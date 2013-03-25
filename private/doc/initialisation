@@ -1,0 +1,9 @@
+- Initialisation -
+
+Pour initaliser un site, il faut tenir compte de plusieurs paramètres.
+Celle ci se déroule dans le fichier "init.php" du dossier "config".
+Elle fonctionne sous forme de clé => valeur
+
+Voici différents paramètre qu'elle peut contenir : 
+
+wrapper => fichier design (voir vues)

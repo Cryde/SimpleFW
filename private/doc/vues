@@ -1,0 +1,13 @@
+- Les vues -
+
+Les vues fonctionnes de manière assez simple.
+Elles sont au format php (pas de système de template)
+Pour chaque modules (voir le fichier "modules") il devra exister un dossier "Views" (s'il doit en avoir, 
+ce n'est pas requis)
+
+Cependant, il est possible qu'un site ai besoin d'un "wrapper".
+Pour ce faire, il faudra utiliser un fichier au format .dsg (ça n'a pas de réel intérêt mais comme ça
+le fichier à un format propre)
+Il possède un pseudo language ayant sa propre nomenclature :
+{file>chemin_du_fichier} : charge un fichier en suivant son chemin
+<content> : élément important, c'est ici qu'on chargera le contenu contenu dans chacune des vues
