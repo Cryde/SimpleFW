@@ -2,6 +2,7 @@
 /* Coeur de ce mini FrameWork */
 
 define('_SFW_INIT_DSG_', 'wrapper');
+define('_SFW_INIT_ROUTE_PATH_', 'routesPath');
 
 function initialize($sitesInit){
 	
@@ -13,6 +14,9 @@ function initialize($sitesInit){
 				
 				case _SFW_INIT_DSG_:
 					loadDesignGlobalFile($param);
+				break;
+				case _SFW_INIT_ROUTE_PATH_:
+					include 'config/' . $param;
 				break;
 			}
 		}
@@ -31,7 +35,18 @@ function loadServices($services){
 
 function loadDesignGlobalFile($file){
 	
-	echo 'lol';
+	$tabFile = file('config/'.$file);
+	
+	ob_start();
+	foreach($tabFile as $line){
+		if(preg_match('#{file>(.+)}#', $line, $match)){
+			render($match[1]);
+		}
+		else if(trim($line) == "<content>"){
+			RouteCollection::match();
+		}
+	}	
+	echo ob_get_clean();
 }
 
 /**
@@ -49,18 +64,28 @@ function displaySite($ajaxMode){
  * @param string $str 
  * @param string $context
  */
-function load($str, $context = ''){
+function load($str, $context = '', $params = array()){
 
 	$context = (!empty($context))? $context.'/' : '';
 	
 	$tabStr = explode(':', $str);
 	if(count($tabStr) == 3){ // site:module:file
-		include 'src/'. $tabStr[0] .'/'.$tabStr[1].'/'.$context.''.$tabStr[2];
+		$filename = 'src/'. $tabStr[0] .'/'.$tabStr[1].'/'.$context.''.$tabStr[2];
+		
+		if(!empty($params)){
+			extract($params);
+		}
+		include $filename;
 	}
 }
 
+function loadController($controller, $params){
+	
+	load($controller, 'Controllers', $params);
+}
 
 function loadRoutes($routeFile){
+
 	load($routeFile);
 }
 

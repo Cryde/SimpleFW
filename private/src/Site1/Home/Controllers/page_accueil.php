@@ -1,2 +1,2 @@
 <?php
-echo 'cocuou';
+echo 'cocuou page accueil';

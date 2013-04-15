@@ -1,2 +1,2 @@
 <?php
-echo 'coucou!';
+echo (!empty($pseudo))? "coucou ". $pseudo .  " ! ":" coucou toi !";
