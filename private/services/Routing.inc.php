@@ -14,7 +14,6 @@ class Route{
 	
 	private $name;
 	private $uri;
-	private $params;
 	private $controller;
 	
 	public function __construct($name){
@@ -49,12 +48,6 @@ class Route{
 		return $this;
 	}
 	
-	public function computeRegex(){
-		
-		
-	}
-	
-
 }
 
 class RouteCollection{
@@ -138,20 +131,10 @@ class RouteCollection{
 			}
 		}
 		
-		
-		
 		return false;
 	}
 	
-	
-	
-	/**
 
-	 * @param unknown $routeName
-	 */
-	
-	
-	
 	static private function getRouteInfo($routeName){
 		
 		return self::$routes[$routeName];
